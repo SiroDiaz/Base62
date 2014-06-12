@@ -1,7 +1,7 @@
 # Base62
 
 
-Base62 encoder and decorder aso for big numbers. Useful to short database numeric ids in URLs.
+Base62 encoder and decorder also for big numbers. Useful to short database numeric ids in URLs.
 
 ## requirements
 
