@@ -1,0 +1,32 @@
+{
+	"name": "base62/base62",
+	"decription": "base62 encoder and decoder also for big numbers",
+	"keywords": [
+		"base62",
+		"encoder",
+		"decoder",
+		"url",
+		"string",
+		"BigInteger"
+	],
+	"version": "1.0",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Siro Diaz Palazon",
+			"email": "siro_diaz@yahoo.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=5.0.0",
+		"phpseclib/phpseclib": "0.3.*"
+	},
+	"autoload": {
+		"psr-0": {"base62": "lib/"}
+	},
+	"support": {
+		"issues": "https://github.com/SiroDiaz/Base62/issues",
+		"source": "https://github.com/SiroDiaz/Base62"
+	}
+}
