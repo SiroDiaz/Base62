@@ -101,9 +101,9 @@ class Base62 {
 		if(preg_match('/^[a-zA-Z0-9]+$/', $data)){
 			
 			$len = strlen($data);
-			$position = new Math_BigInteger();	// posicion del numero o letra de la cadena codificada dentro del bucle
-			$aux = new Math_BigInteger();		// valor posicion ocupada por el numero o letra de la cadena
-			$result = new Math_BigInteger();	// contiene el valor resultante 
+			$position = new Math_BigInteger();
+			$aux = new Math_BigInteger();
+			$result = new Math_BigInteger();
 
 			for($i = 0; $i < $len; $i++){
 				
