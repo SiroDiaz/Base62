@@ -2,8 +2,8 @@
 
 class Base62 {
 
-	private static $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+	private static $chars  = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	
 	/**
 	 *	method to encode data to base62
 	 *
@@ -15,7 +15,28 @@ class Base62 {
 	public static function encode($data){
 
 		if(preg_match('/^\d+$/', $data)){
-			if(!($data instanceof Math_BigInteger)){
+			
+			if(is_string($data)) {
+				$data = (int)$data;
+			}
+
+			if($data <= (string)PHP_INT_MAX) {
+				
+				if($data instanceof Math_BigInteger) {
+					$data = (int)$data->toString();
+					if($data == 0) {
+						return '0';
+					}
+				}
+
+				if($data == 0){
+					return '0';
+				}
+
+				return self::fastEncode($data);
+			}
+
+			if(!($data instanceof Math_BigInteger)) {
 				$data = new Math_BigInteger($data);
 			}
 
@@ -23,8 +44,8 @@ class Base62 {
 				return '0';
 			}
 
-			$base = new Math_BigInteger(62);
 			$base62 = '';
+			$base = new Math_BigInteger(62);
 			$quotient = new Math_BigInteger();
 			$remainder = new Math_BigInteger();
 
@@ -39,6 +60,30 @@ class Base62 {
 			return false;
 		}
 		
+	}
+
+	/**
+	 * Method to encode data to base62 but
+	 * to integers inside the PHP version range
+	 *
+	 * @param int $data The number to encode
+	 * @return string base62 value
+	 */
+
+	private static function fastEncode($data) {
+		$base62 = '';
+		$base = 62;
+		$quotient = 0;
+		$remainder = 0;
+		
+		while($data) {
+			$quotient = floor($data / $base);
+			$remainder = $data % $base;
+			$base62 .= self::$chars[$remainder];
+			$data = $quotient;
+		}
+		
+		return $base62;
 	}
 
 	/**
