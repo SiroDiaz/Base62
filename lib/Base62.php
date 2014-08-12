@@ -24,9 +24,6 @@ class Base62 {
 				
 				if($data instanceof Math_BigInteger) {
 					$data = (int)$data->toString();
-					if($data == 0) {
-						return '0';
-					}
 				}
 
 				if($data == 0){
