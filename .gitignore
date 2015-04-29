@@ -1,0 +1,7 @@
+/vendor
+/.metadata
+.DS_Store
+.project
+composer.phar
+phpunit.phar
+composer.lock

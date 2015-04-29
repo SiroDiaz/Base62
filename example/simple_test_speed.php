@@ -1,7 +1,8 @@
 <?php
 
 require __DIR__ .'/../vendor/autoload.php';
-require __DIR__ .'/../lib/Base62.php';
+
+use Base62 as B62;
 
 /*
  * 32 bit builds of PHP:
@@ -25,7 +26,7 @@ echo "-------- TEST WITHOUT Math_BigInteger --------\n\n";
 
 $start = microtime(true) * 1000;
 $max = PHP_INT_MAX;
-echo "\tBase62 bigint encoded: ". Base62::encode($max) ."\n";
+echo "\tBase62 bigint encoded: ". B62\Base62::encode($max) ."\n";
 echo "\tExecution time: ". floor(microtime(true) * 1000 - $start) ."ms\n\n";
 echo memory_get_usage(true) / 1024 ." KB\n";
 // ------------------------------------------------------
@@ -36,6 +37,6 @@ echo "-------- TEST WITH Math_BigInteger --------\n\n";
 
 $start = microtime(true) * 1000;
 $id = new Math_BigInteger((string)(PHP_INT_MAX + 1), 10);
-echo "\tBase62 bigint encoded: ". Base62::encode($id) ."\n";
+echo "\tBase62 bigint encoded: ". B62\Base62::encode($id) ."\n";
 echo "\tExecution time: ". floor(microtime(true) * 1000 - $start) ."ms\n";
 echo memory_get_usage(true) / 1024 ." KB\n";

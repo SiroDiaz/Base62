@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<phpunit colors="true" bootstrap="vendor/autoload.php">
+<phpunit colors="true" syntaxCheck="false" stopOnFailure="true" bootstrap="tests/bootstrap.php">
 	<testsuite name="Base62 simple test">
-		<directory>./tests/simpleTest.php</directory>
+		<directory>./tests/</directory>
 	</testsuite>
 </phpunit>

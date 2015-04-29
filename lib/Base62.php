@@ -1,4 +1,4 @@
-<?php
+<?php namespace Base62;
 
 class Base62 {
 
@@ -34,7 +34,7 @@ class Base62 {
 			}
 
 			if(!($data instanceof Math_BigInteger)) {
-				$data = new Math_BigInteger($data);
+				$data = new \Math_BigInteger($data);
 			}
 
 			if($data->toString() == 0){
@@ -42,9 +42,9 @@ class Base62 {
 			}
 
 			$base62 = '';
-			$base = new Math_BigInteger(62);
-			$quotient = new Math_BigInteger();
-			$remainder = new Math_BigInteger();
+			$base = new \Math_BigInteger(62);
+			$quotient = new \Math_BigInteger();
+			$remainder = new \Math_BigInteger();
 
 			while($data->toString() > 0){
 				list($quotient, $remainder) = $data->divide($base);
@@ -103,23 +103,23 @@ class Base62 {
 
 	private static function bigPow($size){
 		if($size < 2){
-			return new Math_BigInteger((string)pow(62, $size), 10);
+			return new \Math_BigInteger((string)pow(62, $size), 10);
 		}
 
 		$iterations = $size / 2;
-		$total = new Math_BigInteger('1', 10);
-		$result = new Math_BigInteger('0', 10);
+		$total = new \Math_BigInteger('1', 10);
+		$result = new \Math_BigInteger('0', 10);
 		$results = array();
 
 		for($i = 0; $i < $iterations; $i++){
-			$results[] = new Math_BigInteger(pow(62, 2), 10);
+			$results[] = new \Math_BigInteger(pow(62, 2), 10);
 		}
 		if(!self::isEven($size % 2)){
-			$results[$iterations] = new Math_BigInteger(62, 10);
+			$results[$iterations] = new \Math_BigInteger(62, 10);
 		}
 
 		for($i = 0; $i < $iterations; $i++){
-			$results[$i] = new Math_BigInteger($results[$i], 10);
+			$results[$i] = new \Math_BigInteger($results[$i], 10);
 			$result = $total->multiply($results[$i]);
 			$total = $result;
 		}
@@ -143,16 +143,16 @@ class Base62 {
 		if(preg_match('/^[a-zA-Z0-9]+$/', $data)){
 			
 			$len = strlen($data);
-			$position = new Math_BigInteger();
-			$aux = new Math_BigInteger();
-			$result = new Math_BigInteger();
+			$position = new \Math_BigInteger();
+			$aux = new \Math_BigInteger();
+			$result = new \Math_BigInteger();
 
 			for($i = 0; $i < $len; $i++){
 				
-				$position = new Math_BigInteger((string)strpos(self::$chars, $data[$i]));
+				$position = new \Math_BigInteger((string)strpos(self::$chars, $data[$i]));
 				
 				if($position->toString() >= 0){
-					$aux = $position->multiply(new Math_BigInteger(self::bigPow($i)));
+					$aux = $position->multiply(new \Math_BigInteger(self::bigPow($i)));
 					$result = $result->add($aux);
 				}else{
 					return false;
