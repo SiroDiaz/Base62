@@ -31,7 +31,7 @@ require 'vendor/autoload.php';
 use Base62 as B62;
 
 $encodedValue = B62\Base62::encode(200000);	// 'O1Q'
-$decodedValue = B62\Base62::encode($encodedValue); // 200000
+$decodedValue = B62\Base62::decode($encodedValue); // 200000
 ```
 
 Encoding and decoding big numbers (using Math_BigInteger object).
@@ -46,5 +46,5 @@ $id = new \Math_BigInteger('18446744073709551615', 10);
 
 // print encoded base62 number id
 $encodedValue = B62\Base62::encode($id);	// 'fyha61AhGY1'
-$decodedValue = B62\Base62::decode(Base62::encode($id)); // 18446744073709551615
+$decodedValue = B62\Base62::decode(B62\Base62::encode($id)); // 18446744073709551615
 ```
