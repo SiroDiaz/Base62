@@ -9,7 +9,7 @@
 		"string",
 		"BigInteger"
 	],
-	"version": "2.1",
+	"version": "2.2",
 	"license": "MIT",
 	"authors": [
 		{
@@ -21,11 +21,11 @@
 		"phpseclib/phpseclib": "0.3.*"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~4.6"
+		"phpunit/phpunit": "~4.8"
 	},
 	"autoload": {
 		"psr-4": {
-			"Base62\\": "lib"
+			"Base62\\": "src"
 		}
 	},
 	"support": {

@@ -2,7 +2,7 @@
 
 use Base62 as B62;
 
-class simpleTest extends PHPUnit_Framework_TestCase {
+class Base62Test extends PHPUnit_Framework_TestCase {
 
 	public function setUp() {}
 
@@ -15,5 +15,4 @@ class simpleTest extends PHPUnit_Framework_TestCase {
 		$reversed = B62\Base62::decode('01');
 		$this->assertEquals('62', $reversed);
 	}
-
 }

@@ -2,8 +2,8 @@
 
 class Base62 {
 
-	private static $chars  = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	
+	private static $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
 	/**
 	 *	method to encode data to base62
 	 *
@@ -15,13 +15,13 @@ class Base62 {
 	public static function encode($data){
 
 		if(preg_match('/^\d+$/', $data)){
-			
+
 			if(is_string($data)) {
 				$data = (int)$data;
 			}
 
 			if($data <= (string)PHP_INT_MAX) {
-				
+
 				if($data instanceof Math_BigInteger) {
 					$data = (int)$data->toString();
 				}
@@ -56,7 +56,7 @@ class Base62 {
 		}else{
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -72,14 +72,14 @@ class Base62 {
 		$base = 62;
 		$quotient = 0;
 		$remainder = 0;
-		
+
 		while($data) {
 			$quotient = floor($data / $base);
 			$remainder = $data % $base;
 			$base62 .= self::$chars[$remainder];
 			$data = $quotient;
 		}
-		
+
 		return $base62;
 	}
 
@@ -141,16 +141,16 @@ class Base62 {
 
 	public static function decode($data){
 		if(preg_match('/^[a-zA-Z0-9]+$/', $data)){
-			
+
 			$len = strlen($data);
 			$position = new \Math_BigInteger();
 			$aux = new \Math_BigInteger();
 			$result = new \Math_BigInteger();
 
 			for($i = 0; $i < $len; $i++){
-				
+
 				$position = new \Math_BigInteger((string)strpos(self::$chars, $data[$i]));
-				
+
 				if($position->toString() >= 0){
 					$aux = $position->multiply(new \Math_BigInteger(self::bigPow($i)));
 					$result = $result->add($aux);
