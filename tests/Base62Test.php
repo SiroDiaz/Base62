@@ -7,12 +7,12 @@ class Base62Test extends PHPUnit_Framework_TestCase {
 	public function setUp() {}
 
 	public function testEncode() {
-		$converted = B62\Base62::encode(62);
-		$this->assertEquals('01', $converted);
+		$this->assertEquals('01', B62\Base62::encode(62));
+		$this->assertEquals('g7', B62\Base62::encode(476));
 	}
 
 	public function testDecode() {
-		$reversed = B62\Base62::decode('01');
-		$this->assertEquals('62', $reversed);
+		$this->assertEquals('62', B62\Base62::decode('01'));
+		$this->assertEquals('476', B62\Base62::decode('g7'));
 	}
 }
