@@ -1,7 +1,6 @@
 <?php
 
 require __DIR__ .'/../vendor/autoload.php';
-// require __DIR__ .'/../lib/Base62.php';
 
 use Base62 as B62;
 
