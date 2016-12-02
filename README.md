@@ -8,7 +8,7 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 
 * requires PHP >= 5.6 or HHVM
 * Composer
-* GMP or BCMath extensions enabled
+* GMP or BCMath extensions enabled(optional but enabled better performance)
 
 ## Composer
 
