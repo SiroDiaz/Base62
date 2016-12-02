@@ -8,8 +8,9 @@ use Brick\Math\RoundingMode;
 class Base62 {
 
   /**
-   *
+   * @var string $chars Contains all valid characters
    */
+   
   private static $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   /**
@@ -58,7 +59,7 @@ class Base62 {
     if(!is_string($base62)) {
       return 0;
     }
-    
+
     $val = 0;
     $base62Chars = array_reverse(str_split($base62));
     $chars = str_split(self::$chars);
