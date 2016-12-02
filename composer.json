@@ -18,7 +18,6 @@
 		}
 	],
 	"require": {
-		"phpseclib/phpseclib": "0.3.*",
 		"brick/math": "0.5.*"
 	},
 	"require-dev": {
