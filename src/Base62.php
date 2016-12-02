@@ -91,7 +91,7 @@ class Base62 {
 	 */
 
 	private static function isEven($num){
-		return (($num % 2) % 2 == 0) ? true : false;
+		return (($num % 2) % 2 == 0);
 	}
 
 	/**
@@ -158,7 +158,6 @@ class Base62 {
 					return false;
 				}
 			}
-
 
 			return $result;
 		}else{
