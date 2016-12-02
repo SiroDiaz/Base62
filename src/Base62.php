@@ -10,7 +10,7 @@ class Base62 {
   /**
    * @var string $chars Contains all valid characters
    */
-   
+
   private static $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   /**
@@ -22,6 +22,11 @@ class Base62 {
 	 */
 
   public static function encode($number) {
+    // evaluate if the number is in a valid format
+    if(!preg_match("/^(\d)+$/", (string) $number)) {
+      return false;
+    }
+
     if ($number == 0) {
       return '0';
     }
@@ -57,7 +62,7 @@ class Base62 {
 
   public static function decode($base62) {
     if(!is_string($base62)) {
-      return 0;
+      return false;
     }
 
     $val = 0;

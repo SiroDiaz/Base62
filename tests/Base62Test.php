@@ -10,6 +10,9 @@ class Base62Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('0', Base62::encode(0));
 		$this->assertEquals('g7', Base62::encode(999));
 		$this->assertEquals('14', Base62::encode(66));
+		// asserts for errors
+		$this->assertFalse(Base62::encode(-12));
+		$this->assertFalse(Base62::encode('not a number'));
 	}
 
 	public function testEncodeBigInteger() {
@@ -20,6 +23,9 @@ class Base62Test extends PHPUnit_Framework_TestCase {
 	public function testDecode() {
 		$this->assertEquals(999, Base62::decode('g7'));
 		$this->assertEquals(66, Base62::decode('14'));
+		// asserts for errors
+		$this->assertFalse(Base62::decode(123));
+		$this->assertFalse(Base62::decode(false));
 	}
 
 	public function testDecodeBigInteger() {
