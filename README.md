@@ -6,10 +6,9 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 
 ## requirements
 
-* requires PHP 5 >= 5.0.0
+* requires PHP >= 5.6 or HHVM
 * Composer
 * GMP or BCMath extensions enabled
-* phpseclib/phpseclib for big integer manipulation
 
 ## Composer
 
@@ -28,23 +27,23 @@ Encoding and decoding litle numbers.
 ```php
 require 'vendor/autoload.php';
 
-use Base62 as B62;
+use Base62\Base62;
 
-$encodedValue = B62\Base62::encode(200000);	// 'O1Q'
-$decodedValue = B62\Base62::decode($encodedValue); // 200000
+$encodedValue = Base62::encode(200000);	// 'Q1O'
+$decodedValue = Base62::decode($encodedValue); // 200000
 ```
 
-Encoding and decoding big numbers (using Math_BigInteger object).
+Encoding and decoding big numbers.
 
 ```php
 require 'vendor/autoload.php';
 
-use Base62 as B62;
+use Base62\Base62;
 
 // unsigned bigint (MySQL) 18446744073709551615
-$id = new \Math_BigInteger('18446744073709551615', 10);
+$id = '18446744073709551615';
 
 // print encoded base62 number id
-$encodedValue = B62\Base62::encode($id);	// 'fyha61AhGY1'
-$decodedValue = B62\Base62::decode(B62\Base62::encode($id)); // 18446744073709551615
+$encodedValue = Base62::encode($id);	// 'lYGhA16ahyf'
+$decodedValue = Base62::decode(Base62::encode($id)); // 18446744073709551615
 ```
