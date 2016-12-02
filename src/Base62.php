@@ -54,7 +54,11 @@ class Base62 {
 	 *			String the decoded string
 	 */
 
-  public static function decode(string $base62) {
+  public static function decode($base62) {
+    if(!is_string($base62)) {
+      return 0;
+    }
+    
     $val = 0;
     $base62Chars = array_reverse(str_split($base62));
     $chars = str_split(self::$chars);
