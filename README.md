@@ -12,7 +12,7 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 
 ## Composer
 
-	$ composer install
+	$ composer require "base62/base62":"dev-master"
 
 ## Quick Start and Examples
 
