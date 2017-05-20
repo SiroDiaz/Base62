@@ -14,12 +14,12 @@ class Base62 {
   private static $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   /**
-	 *	method to encode data to base62
-	 *
-	 *	@param mixed $number the number to convert to base62
-	 *	@return mixed if is a valid number will return a string
-	 *			else returns false
-	 */
+    *	method to encode data to base62
+    *
+    *	@param mixed $number the number to convert to base62
+    *	@return mixed if is a valid number will return a string
+    *			else returns false
+    */
 
   public static function encode($number) {
     // evaluate if the number is in a valid format
@@ -52,13 +52,13 @@ class Base62 {
   }
 
   /**
-	 * decode the string to obtain the number
-	 *
-	 * @param string $base62 the base62 encoded number
-	 * @return mixed false if the base doesn't matches
-	 *			or if the position is less than 0.
-	 *			String the decoded string
-	 */
+    * decode the string to obtain the number
+    *
+    * @param string $base62 the base62 encoded number
+    * @return mixed false if the base doesn't matches
+    *			or if the position is less than 0.
+    *			String the decoded string
+    */
 
   public static function decode($base62) {
     if(!is_string($base62)) {
