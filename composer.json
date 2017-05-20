@@ -9,7 +9,8 @@
 		"string",
 		"BigInteger"
 	],
-	"version": "2.2",
+	"type": "library",
+	"version": "2.3",
 	"license": "MIT",
 	"authors": [
 		{
