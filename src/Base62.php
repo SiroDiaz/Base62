@@ -68,7 +68,7 @@ class Base62 {
     $val = 0;
     $base62Chars = array_reverse(str_split($base62));
     $chars = str_split(self::$chars);
-    foreach($base62Chars as $index => $character) {
+    foreach($base62Chars as $index => &$character) {
       $val += array_search($character, $chars) * pow(62, $index);
     }
 

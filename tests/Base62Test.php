@@ -1,8 +1,9 @@
 <?php
 
 use Base62\Base62;
+use PHPUnit\Framework\TestCase;
 
-class Base62Test extends PHPUnit_Framework_TestCase {
+class Base62Test extends TestCase {
 
 	public function setUp() {}
 
@@ -26,6 +27,7 @@ class Base62Test extends PHPUnit_Framework_TestCase {
 		// asserts for errors
 		$this->assertFalse(Base62::decode(123));
 		$this->assertFalse(Base62::decode(false));
+		$this->assertFalse(Base62::decode([]));
 	}
 
 	public function testDecodeBigInteger() {
