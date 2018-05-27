@@ -20,7 +20,6 @@ class Base62 {
     *	@return mixed if is a valid number will return a string
     *			else returns false
     */
-
   public static function encode($number) {
     // evaluate if the number is in a valid format
     if(!preg_match("/^(\d)+$/", (string) $number)) {
@@ -36,7 +35,7 @@ class Base62 {
       $number = BigInteger::of($number);
       while($number->isGreaterThan(0)) {
         $remainder = $number->remainder(62, RoundingMode::DOWN);
-        $encodedNumber = self::$chars[$remainder->toInteger()] . $encodedNumber;
+        $encodedNumber = self::$chars[(int)((string)$remainder)] . $encodedNumber;
         $number = $number->dividedBy(62, RoundingMode::DOWN);
       }
 
