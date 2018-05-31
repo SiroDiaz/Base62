@@ -60,33 +60,6 @@ class Base62
     public function encode($number)
     {
         return $this->encoder->encode($number);
-        // evaluate if the number is in a valid format
-        if (!preg_match("/^(\d)+$/", (string) $number)) {
-            return false;
-        }
-
-        if ($number == 0) {
-            return '0';
-        }
-
-        $encodedNumber = '';
-        if ((int) $number >= PHP_INT_MAX) {
-            $number = BigInteger::of($number);
-            while ($number->isGreaterThan(0)) {
-                $remainder = $number->remainder(62, RoundingMode::DOWN);
-                $encodedNumber = self::$chars[(int)((string)$remainder)] . $encodedNumber;
-                $number = $number->dividedBy(62, RoundingMode::DOWN);
-            }
-
-            return $encodedNumber;
-        }
-
-        while ($number > 0) {
-            $encodedNumber = self::$chars[$number % 62] . $encodedNumber;
-            $number = floor($number / 62);
-        }
-
-        return $encodedNumber;
     }
 
     /**
