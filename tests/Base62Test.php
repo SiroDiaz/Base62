@@ -12,7 +12,7 @@ class Base62Test extends TestCase {
     {
         $base62 = new Base62(new BasicEncoder());
         $this->assertEquals('0', $base62->encode(0));
-        $this->assertEquals('g7', $base62->encode(999));
+        $this->assertEquals('G7', $base62->encode(999));
         $this->assertEquals('14', $base62->encode(66));
         // asserts for errors
         // $this->assertFalse($base62->encode(-12));
@@ -42,7 +42,7 @@ class Base62Test extends TestCase {
     public function testDecode()
     {
         $base62 = new Base62(new BasicEncoder());
-        $this->assertEquals(999, $base62->decode('g7'));
+        $this->assertEquals(999, $base62->decode('G7'));
         $this->assertEquals(66, $base62->decode('14'));
     }
 

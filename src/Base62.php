@@ -21,14 +21,14 @@ class Base62
      *
      * @var string CHARS constant contains all valid characters.
      */
-    const CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
     /**
      * Pre computed base 62 characters in reverse order for improve performance.
      *
      * @var string REVERSE_CHARS contains CHARS constant in reverse order.
      */
-    const REVERSE_CHARS = 'ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210';
+    const REVERSE_CHARS = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210';
     
     /**
      * @var integer
