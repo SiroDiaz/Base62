@@ -31,14 +31,19 @@ class GmpEncoder extends BaseEncoder
         return $base62;
     }
 
+    /**
+     * @inheritdoc
+     *
+     * @return string $number The number decoded but as string
+     */
     public function decode($data)
     {
         if (!is_string($data)) {
             throw new InvalidArgumentException('Must be a base 62 valid string');
         }
 
-        $hex = gmp_strval(gmp_init($data, 62), 10);
+        $number = gmp_strval(gmp_init($data, 62), 10);
         
-        return $hex;
+        return $number;
     }
 }

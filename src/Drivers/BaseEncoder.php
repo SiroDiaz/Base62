@@ -21,5 +21,5 @@ abstract class BaseEncoder
     /**
      * 
      */
-    abstract public function decode($value);
+    abstract public function decode($data);
 }
