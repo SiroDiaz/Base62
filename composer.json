@@ -1,6 +1,5 @@
 {
 	"name": "base62/base62",
-	"decription": "base62 encoder and decoder also for big numbers",
 	"keywords": [
 		"base62",
 		"encoder",
