@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<phpunit colors="true" syntaxCheck="false" stopOnFailure="true" bootstrap="tests/bootstrap.php">
-	<testsuite name="Base62 simple test">
-		<directory>./tests/</directory>
-	</testsuite>
+<phpunit colors="true" syntaxCheck="false" stopOnFailure="true" bootstrap="vendor/autoload.php">
+    <testsuite name="Base62 simple test">
+	    <directory>./tests/</directory>
+    </testsuite>
+	<filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
