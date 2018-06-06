@@ -1,5 +1,7 @@
 <?php
 
+namespace Base62\Tests;
+
 use Base62\Base62;
 use PHPUnit\Framework\TestCase;
 
@@ -7,31 +9,89 @@ class Base62Test extends TestCase {
 
 	public function setUp() {}
 
-	public function testEncode() {
-		$this->assertEquals('0', Base62::encode(0));
-		$this->assertEquals('g7', Base62::encode(999));
-		$this->assertEquals('14', Base62::encode(66));
-		// asserts for errors
-		$this->assertFalse(Base62::encode(-12));
-		$this->assertFalse(Base62::encode('not a number'));
+	public function encodeDataProvider() {
+		return [
+			['0', 0],
+			['g7', 999],
+			['14', 66],
+		];
 	}
 
-	public function testEncodeBigInteger() {
-		$this->assertEquals('2lkCB1', Base62::encode("2147483647"));
-		$this->assertEquals('YYLs9kDZ', Base62::encode("214748364712343"));
+	/**
+	 * @dataProvider encodeDataProvider
+	 */
+	public function testEncode($expectedString, $number) {
+		$this->assertEquals($expectedString, Base62::encode($number));
 	}
 
-	public function testDecode() {
-		$this->assertEquals(999, Base62::decode('g7'));
-		$this->assertEquals(66, Base62::decode('14'));
-		// asserts for errors
-		$this->assertFalse(Base62::decode(123));
-		$this->assertFalse(Base62::decode(false));
-		$this->assertFalse(Base62::decode([]));
+	public function invalidEncodedValueDataProvider() {
+		return [
+			[-12],
+			['not a number'],
+		];
 	}
 
-	public function testDecodeBigInteger() {
-		$this->assertEquals('2147483647', Base62::decode('2lkCB1'));
-		$this->assertEquals('214748364712343', Base62::decode('YYLs9kDZ'));
+	/**
+	 * @dataProvider invalidEncodedValueDataProvider
+	 */
+	public function testEncodeWithInvalidValue($invalidValue) {
+		$this->assertFalse(Base62::encode($invalidValue));
+	}
+
+	public function encodeBigIntegerDataProvider() {
+		return [
+			['2lkCB1', '2147483647'],
+			['YYLs9kDZ', '214748364712343'],
+		];
+	}
+
+	/**
+	 * @dataProvider encodeBigIntegerDataProvider
+	 */
+	public function testEncodeBigInteger($expectedString, $decodedString) {
+		$this->assertEquals($expectedString, Base62::encode($decodedString));
+	}
+
+	public function decodeDataProvider() {
+		return [
+			[999, 'g7'],
+			[66, '14'],
+		];
+	}
+
+	/**
+	 * @dataProvider decodeDataProvider
+	 */
+	public function testDecode($expectedNumber, $encodedString) {
+		$this->assertEquals($expectedNumber, Base62::decode($encodedString));
+	}
+
+	public function invalidDecodedValueDataProvider() {
+		return [
+			[123],
+			[false],
+			[[]],
+		];
+	}
+
+	/**
+	 * @dataProvider invalidDecodedValueDataProvider
+	 */
+	public function testDecodeWithInvalidValue($invalidValue) {
+		$this->assertFalse(Base62::decode($invalidValue));
+	}
+
+	public function decodeBigIntegerDataProvider() {
+		return [
+			['2147483647', '2lkCB1'],
+			['214748364712343', 'YYLs9kDZ'],
+		];
+	}
+
+	/**
+	 * @dataProvider decodeBigIntegerDataProvider
+	 */
+	public function testDecodeBigInteger($expectedString, $encodedString) {
+		$this->assertEquals($expectedString, Base62::decode($encodedString));
 	}
 }
