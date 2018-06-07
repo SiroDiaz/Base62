@@ -6,69 +6,92 @@ use PHPUnit\Framework\TestCase;
 
 class GmpEncoderTest extends TestCase
 {
+    private $base62;
 
-    public function setUp() {}
+    public function setUp()
+    {
+        $this->base62 = new Base62('gmp');
+    }
+
+    public function encodeDataProvider()
+    {
+        return [
+            ['0', 0],
+            ['G7', 999],
+            ['14', 66],
+        ];
+    }
+
+    public function decodeDataProvider() {
+        return [
+            ['0', '0'],
+            ['999', 'G7'],
+            ['66', '14'],
+        ];
+    }
+
+    public function encodeBigIntegerDataProvider()
+    {
+        return [
+            ['2LKcb1', '2147483647'],
+            ['yylS9Kdz', '214748364712343'],
+        ];
+    }
 
     public function testEncode()
     {
-        $base62 = new Base62(new GmpEncoder());
-        $this->assertEquals('0', $base62->encode(0));
-        $this->assertEquals('G7', $base62->encode(999));
-        $this->assertEquals('14', $base62->encode(66));
+        $this->assertEquals('0', $this->base62->encode(0));
+        $this->assertEquals('G7', $this->base62->encode(999));
+        $this->assertEquals('14', $this->base62->encode(66));
     }
 
     public function testEncodeWithNegativeNumber()
     {
-        $base62 = new Base62(new GmpEncoder());
         $this->expectException(InvalidArgumentException::class);
-        $base62->encode(-1);
+        $this->base62->encode(-1);
     }
 
     public function testWithInvalidString()
     {
-        $base62 = new Base62(new GmpEncoder());
         $this->expectException(InvalidArgumentException::class);
-        $base62->encode('12asd');
+        $this->base62->encode('12asd');
     }
 
-    /*
-    public function testEncodeBigInteger() {
-        $this->assertEquals('2lkCB1', $base62->encode("2147483647"));
-        $this->assertEquals('YYLs9kDZ', $base62->encode("214748364712343"));
+    /**
+     * @dataProvider encodeBigIntegerDataProvider
+     */
+    public function testEncodeBigInteger($expectedString, $number) {
+        $this->assertEquals($expectedString, $this->base62->encode($number));
     }
-    */
+    
     public function testDecode()
     {
-        $base62 = new Base62(new GmpEncoder());
-        $this->assertEquals('999', $base62->decode('G7'));
-        $this->assertEquals(66, $base62->decode('14'));
+        $this->assertEquals('999', $this->base62->decode('G7'));
+        $this->assertEquals(66, $this->base62->decode('14'));
     }
 
     public function testDecodeWithNegativeNumber()
     {
-        $base62 = new Base62(new GmpEncoder());
         $this->expectException(InvalidArgumentException::class);
-        $base62->decode(-1);
+        $this->base62->decode(-1);
     }
 
     public function testDecodeWithPositiveNumber()
     {
-        $base62 = new Base62(new GmpEncoder());
         $this->expectException(InvalidArgumentException::class);
-        $base62->decode(123);
+        $this->base62->decode(123);
     }
 
     public function testDecodeWithBoolean()
     {
-        $base62 = new Base62(new GmpEncoder());
         $this->expectException(InvalidArgumentException::class);
-        $base62->decode(false);
+        $this->base62->decode(false);
     }
 
     /*
     public function testDecodeBigInteger() {
-        $this->assertEquals('2147483647', $base62->decode('2lkCB1'));
-        $this->assertEquals('214748364712343', $base62->decode('YYLs9kDZ'));
+        $this->assertEquals('2147483647', $this->base62->decode('2lkCB1'));
+        $this->assertEquals('214748364712343', $this->base62->decode('YYLs9kDZ'));
     }
     */
 }

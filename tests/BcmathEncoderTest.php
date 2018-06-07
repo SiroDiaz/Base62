@@ -6,27 +6,40 @@ use PHPUnit\Framework\TestCase;
 
 class BcmathEncoderTest extends TestCase
 {
+    private $base62;
 
-    public function setUp() {}
-
-    public function testEncode()
+    public function setUp()
     {
-        $base62 = new Base62(new BcmathEncoder());
-        $this->assertEquals('0', $base62->encode(0));
-        $this->assertEquals('G7', $base62->encode(999));
-        $this->assertEquals('14', $base62->encode(66));
+        $this->base62 = new Base62('bcmath');
+    }
+
+    public function encodeDataProvider()
+    {
+        return [
+            ['0', 0],
+            ['G7', 999],
+            ['14', 66],
+        ];
+    }
+
+    /**
+     * @dataProvider encodeDataProvider
+     */
+    public function testEncode($expectedString, $number)
+    {
+        $this->assertEquals($expectedString, $this->base62->encode($number));
     }
 
     public function testEncodeWithNegativeNumber()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->expectException(InvalidArgumentException::class);
         $base62->encode(-1);
     }
     /*
     public function testWithInvalidString()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->expectException(InvalidArgumentException::class);
         $base62->encode('12asd');
     }
@@ -40,28 +53,28 @@ class BcmathEncoderTest extends TestCase
     /*
     public function testDecode()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->assertEquals('999', $base62->decode('G7'));
         $this->assertEquals(66, $base62->decode('14'));
     }
 
     public function testDecodeWithNegativeNumber()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->expectException(InvalidArgumentException::class);
         $base62->decode(-1);
     }
 
     public function testDecodeWithPositiveNumber()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->expectException(InvalidArgumentException::class);
         $base62->decode(123);
     }
 
     public function testDecodeWithBoolean()
     {
-        $base62 = new Base62(new BcmathEncoder());
+        $base62 = new Base62('bcmath');
         $this->expectException(InvalidArgumentException::class);
         $base62->decode(false);
     }

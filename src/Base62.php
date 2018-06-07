@@ -10,6 +10,8 @@
 namespace Base62;
 
 use Base62\Drivers\BaseEncoder;
+use Base62\Drivers\EncoderFactory;
+
 /**
  * The entry point class that is used to choose a big integer driver
  * and also to bind the encode and decode methods.
@@ -31,6 +33,8 @@ class Base62
     const REVERSE_CHARS = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210';
     
     /**
+     * Pre computed base 62 string length. Better than strlen(Base62::CHARS).
+     *
      * @var integer
      */
     const BASE_LENGTH = 62;
@@ -45,9 +49,10 @@ class Base62
     /**
      * Constructor method that recieves an instance of the encoder
      */
-    public function __construct(BaseEncoder $encoder)
+    public function __construct($encoder)
     {
-        $this->encoder = $encoder;
+        $encoderFactory = new EncoderFactory();
+        $this->encoder = $encoderFactory->getEncoder($encoder);
     }
 
     /**

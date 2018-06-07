@@ -33,7 +33,7 @@ class BasicEncoder extends BaseEncoder
 
     public function decode($data)
     {
-        if (!is_string($data)) {
+        if (!is_string($data) || !preg_match("/^[a-zA-Z0-9]+$/", $data)) {
             throw new InvalidArgumentException('Must be a base 62 valid string');
         }
 
@@ -44,6 +44,6 @@ class BasicEncoder extends BaseEncoder
             $val += array_search($character, $chars) * pow(Base62::BASE_LENGTH, $index);
         }
 
-        return (string) $val;
+        return $val === 0 ? '0' : (string) $val;
     }
 }
