@@ -11,7 +11,5 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - sudo pecl install gmp
-  - sudo pecl install bcmath
 
 script: phpunit
