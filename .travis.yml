@@ -1,5 +1,5 @@
 # Travis CI configuration
-
+sudo: true
 language: php
 
 php:
@@ -11,5 +11,7 @@ php:
 before_script:
   - composer self-update
   - composer install
+  - sudo pecl install gmp
+  - sudo pecl install bcmath
 
 script: phpunit
