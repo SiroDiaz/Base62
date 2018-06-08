@@ -36,6 +36,13 @@
 			"Base62\\Tests\\": "tests/"
 		}
 	},
+	"extra": {
+        "laravel": {
+            "providers": [
+                "Base62\\Base62ServiceProvider",
+               ]
+        }
+    },
 	"suggest": {
         "ext-gmp": "This extension enables faster big integer encoding and decoding."
     },
