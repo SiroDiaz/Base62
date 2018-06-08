@@ -34,7 +34,7 @@ class GmpEncoderTest extends TestCase
     {
         return [
             ['2LKcb1', '2147483647'],
-            ['yylS9Kdz', '214748364712343'],
+            ['47rhmv5JHMPe', '214748364787898954454'],
         ];
     }
 

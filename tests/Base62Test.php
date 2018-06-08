@@ -33,7 +33,7 @@ class Base62Test extends TestCase
     {
         return [
             ['3MpgfJ1', '214748364787'],
-            ['yylS9Kdz', '214748364712343'],
+            ['47rhmv5JHMPe', '214748364787898954454'],
         ];
     }
 
