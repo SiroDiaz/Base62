@@ -4,3 +4,4 @@
 .project
 composer.phar
 phpunit.phar
+composer.lock
