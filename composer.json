@@ -39,7 +39,7 @@
 	"extra": {
         "laravel": {
             "providers": [
-                "Base62\\Base62ServiceProvider",
+                "Base62\\Base62ServiceProvider"
                ]
         }
     },
