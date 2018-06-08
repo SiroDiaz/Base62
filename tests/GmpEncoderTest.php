@@ -1,8 +1,11 @@
 <?php
 
+namespace Base62\Tests;
+
 use Base62\Base62;
 use Base62\Drivers\GmpEncoder;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 class GmpEncoderTest extends TestCase
 {
@@ -88,10 +91,11 @@ class GmpEncoderTest extends TestCase
         $this->base62->decode(false);
     }
 
-    /*
-    public function testDecodeBigInteger() {
-        $this->assertEquals('2147483647', $this->base62->decode('2lkCB1'));
-        $this->assertEquals('214748364712343', $this->base62->decode('YYLs9kDZ'));
+    /**
+     *
+     * @dataProvider encodeBigIntegerDataProvider
+     */
+    public function testDecodeBigInteger($encodedString, $decodedString) {
+        $this->assertEquals($decodedString, $this->base62->decode($encodedString));
     }
-    */
 }

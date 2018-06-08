@@ -9,9 +9,11 @@
 namespace Base62\Drivers;
 
 /**
- *
+ * Factory method implementation for generate a driver encoder by name.
+ * Allowed drivers are 'gmp', 'basic', and 'bcmath'.
  */
-class EncoderFactory {
+class EncoderFactory
+{
     /**
      * Generates an encoder and returns the instance.
      *

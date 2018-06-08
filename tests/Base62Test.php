@@ -1,7 +1,10 @@
 <?php
 
+namespace Base62\Tests;
+
 use Base62\Base62;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 class Base62Test extends TestCase
 {
@@ -21,7 +24,8 @@ class Base62Test extends TestCase
         ];
     }
 
-    public function decodeDataProvider() {
+    public function decodeDataProvider()
+    {
         return [
             ['0', '0'],
             ['999', 'G7'],
@@ -58,6 +62,7 @@ class Base62Test extends TestCase
     }
 
     /**
+     *
      * @dataProvider encodeBigIntegerDataProvider
      */
     public function testEncodeBigInteger($expectedString, $decodedString)
@@ -66,6 +71,7 @@ class Base62Test extends TestCase
     }
     
     /**
+     *
      * @dataProvider decodeDataProvider
      */
     public function testDecode($expectedString, $decodedString)
