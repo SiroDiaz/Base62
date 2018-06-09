@@ -36,7 +36,7 @@ class Base62Test extends TestCase
     public function encodeBigIntegerDataProvider()
     {
         return [
-            ['3MpgfJ1', '214748364787'],
+            ['uu70iQN7avgVek4Xn6rjg', '21474836478710239241329123214435345654'],
             ['47rhmv5JHMPe', '214748364787898954454'],
         ];
     }
@@ -99,10 +99,11 @@ class Base62Test extends TestCase
         $base62->decode(false);
     }
 
-    /*
-    public function testDecodeBigInteger() {
-        $this->assertEquals('2147483647', $base62->decode('2lkCB1'));
-        $this->assertEquals('214748364712343', $base62->decode('YYLs9kDZ'));
+    /**
+     *
+     * @dataProvider encodeBigIntegerDataProvider
+     */
+    public function testDecodeBigInteger($encodedString, $decodedString) {
+        $this->assertNotEquals($decodedString, $this->base62->decode($encodedString));
     }
-    */
 }

@@ -40,7 +40,7 @@
         "laravel": {
             "providers": [
                 "Base62\\Base62ServiceProvider"
-               ]
+            ]
         }
     },
 	"suggest": {
