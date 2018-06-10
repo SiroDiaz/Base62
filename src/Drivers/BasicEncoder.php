@@ -25,7 +25,7 @@ class BasicEncoder extends BaseEncoder
 
         while ($number > 0) {
             $encodedNum = Base62::CHARS[$number % Base62::BASE_LENGTH] . $encodedNum;
-            $number = floor($number / Base62::BASE_LENGTH);
+            $number = abs(floor($number / Base62::BASE_LENGTH));
         }
 
         return $encodedNum;

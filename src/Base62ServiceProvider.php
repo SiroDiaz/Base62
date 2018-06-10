@@ -37,6 +37,8 @@ class Base62ServiceProvider extends ServiceProvider
 
     /**
      * Register the publishable files.
+     *
+     * @return void
      */
     private function registerPublishableResources()
     {
@@ -52,6 +54,11 @@ class Base62ServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * Register the configuration file in the Laravel or Lumen app.
+     *
+     * @return void
+     */
     public function registerConfigs()
     {
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
