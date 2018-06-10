@@ -3,16 +3,17 @@
 namespace Base62\Tests;
 
 use Base62\Base62;
+use Base62\Drivers\GmpEncoder;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
-class Base62Test extends TestCase
+class GmpEncoderTest extends TestCase
 {
     private $base62;
 
     public function setUp()
     {
-        $this->base62 = new Base62('basic');
+        $this->base62 = new Base62('gmp');
     }
 
     public function encodeDataProvider()
@@ -24,8 +25,7 @@ class Base62Test extends TestCase
         ];
     }
 
-    public function decodeDataProvider()
-    {
+    public function decodeDataProvider() {
         return [
             ['0', '0'],
             ['999', 'G7'],
@@ -36,17 +36,16 @@ class Base62Test extends TestCase
     public function encodeBigIntegerDataProvider()
     {
         return [
-            ['uu70iQN7avgVek4Xn6rjg', '21474836478710239241329123214435345654'],
+            ['2LKcb1', '2147483647'],
             ['47rhmv5JHMPe', '214748364787898954454'],
         ];
     }
 
-    /**
-     * @dataProvider encodeDataProvider
-     */
-    public function testEncode($expectedString, $decodedString)
+    public function testEncode()
     {
-        $this->assertEquals($expectedString, $this->base62->encode($decodedString));
+        $this->assertEquals('0', $this->base62->encode(0));
+        $this->assertEquals('G7', $this->base62->encode(999));
+        $this->assertEquals('14', $this->base62->encode(66));
     }
 
     public function testEncodeWithNegativeNumber()
@@ -62,28 +61,22 @@ class Base62Test extends TestCase
     }
 
     /**
-     *
      * @dataProvider encodeBigIntegerDataProvider
      */
-    public function testEncodeBigInteger($expectedString, $decodedString)
-    {
-        $this->assertNotEquals($expectedString, $this->base62->encode($decodedString));
+    public function testEncodeBigInteger($expectedString, $number) {
+        $this->assertEquals($expectedString, $this->base62->encode($number));
     }
     
-    /**
-     *
-     * @dataProvider decodeDataProvider
-     */
-    public function testDecode($expectedString, $decodedString)
+    public function testDecode()
     {
-        $this->assertEquals($expectedString, $this->base62->decode($decodedString));
+        $this->assertEquals('999', $this->base62->decode('G7'));
+        $this->assertEquals(66, $this->base62->decode('14'));
     }
 
     public function testDecodeWithNegativeNumber()
     {
-        $base62 = new Base62('basic');
         $this->expectException(InvalidArgumentException::class);
-        $base62->decode(-1);
+        $this->base62->decode(-1);
     }
 
     public function testDecodeWithPositiveNumber()
@@ -94,9 +87,8 @@ class Base62Test extends TestCase
 
     public function testDecodeWithBoolean()
     {
-        $base62 = new Base62('basic');
         $this->expectException(InvalidArgumentException::class);
-        $base62->decode(false);
+        $this->base62->decode(false);
     }
 
     /**
@@ -104,6 +96,6 @@ class Base62Test extends TestCase
      * @dataProvider encodeBigIntegerDataProvider
      */
     public function testDecodeBigInteger($encodedString, $decodedString) {
-        $this->assertNotEquals($decodedString, $this->base62->decode($encodedString));
+        $this->assertEquals($decodedString, $this->base62->decode($encodedString));
     }
 }

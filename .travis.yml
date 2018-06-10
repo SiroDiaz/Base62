@@ -1,5 +1,5 @@
 # Travis CI configuration
-
+sudo: true
 language: php
 
 php:

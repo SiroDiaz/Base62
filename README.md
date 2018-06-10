@@ -1,6 +1,6 @@
 # Base62
 
-[![Build Status](https://travis-ci.org/SiroDiaz/Base62.svg?branch=master)](https://travis-ci.org/SiroDiaz/Base62)
+[![Build Status](https://travis-ci.org/SiroDiaz/Base62.svg?branch=develop)](https://travis-ci.org/SiroDiaz/Base62)
 
 Base62 encoder and decorder also for big numbers. Useful to short database numeric ids in URLs.
 
