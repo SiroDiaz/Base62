@@ -36,7 +36,6 @@ class Base62Test extends TestCase
     public function encodeBigIntegerDataProvider()
     {
         return [
-            ['uu70iQN7avgVek4Xn6rjg', '21474836478710239241329123214435345654'],
             ['47rhmv5JHMPe', '214748364787898954454'],
         ];
     }
@@ -67,6 +66,7 @@ class Base62Test extends TestCase
      */
     public function testEncodeBigInteger($expectedString, $decodedString)
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->assertNotEquals($expectedString, $this->base62->encode($decodedString));
     }
     

@@ -16,16 +16,6 @@ class GmpEncoder extends BaseEncoder
             return '0';
         }
         
-        /*
-        $gmpNumber = gmp_init($number);
-        $encodedNumber = '';
-        while (gmp_cmp($gmpNumber, '0') === 1) {
-            $remainder = gmp_mod($gmpNumber, '62');
-            $encodedNumber = $this->$chars[(int)((string)$remainder)] . $encodedNumber;
-            $number = $number->dividedBy(62, RoundingMode::DOWN);
-        }
-        */
-
         $base62 = gmp_strval(gmp_init($number, 10), 62);
 
         return $base62;
