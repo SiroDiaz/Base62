@@ -46,12 +46,29 @@ class BasicEncoder extends BaseEncoder
         return $val === 0 ? '0' : (string) $val;
     }
 
+    /**
+     * Checks if the number is positive and valid ([0-9]+), and then
+     * checks if the number is lower or equal to the maximum integer
+     * available in PHP.
+     *
+     * @param int   $number
+     * @return bool
+     */
     private function isValidNumber($number)
     {
         $number = (string) $number;
         return ctype_digit($number) && !$this->isGreaterThan($number, PHP_INT_MAX);
     }
 
+    /**
+     * Compare two integers and if $num1 is greater than $num2
+     * returns true. It checks if GMP or Bcmath extensions are enabled,
+     * else it would use default PHP comparator operator.
+     *
+     * @param string $num1
+     * @param string $num2
+     * @return bool  True if $num1 is greater than $num2.
+     */
     private function isGreaterThan($num1, $num2)
     {
         if (function_exists('gmp_init')) {
@@ -60,8 +77,8 @@ class BasicEncoder extends BaseEncoder
             return gmp_cmp($gmpInt1, $gmpInt2) === 1;
         } else if (function_exists('bccomp')) {
             return bccomp($num1, $num2) === 1;
+        } else {
+            return (int) $num1 > (int) $num2;
         }
-
-        return (int) $num1 > (int) $num2;
     }
 }
