@@ -49,7 +49,7 @@ class Base62
     /**
      * Constructor method that recieves an instance of the encoder
      */
-    public function __construct($encoder)
+    public function __construct($encoder = 'basic')
     {
         $encoderFactory = new EncoderFactory();
         $this->encoder = $encoderFactory->getEncoder($encoder);
