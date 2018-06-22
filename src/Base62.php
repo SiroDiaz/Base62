@@ -6,7 +6,6 @@
  * @license   MIT
  * @see       https://github.com/SiroDiaz/Base62
  */
-
 namespace Base62;
 
 use Base62\Drivers\BaseEncoder;

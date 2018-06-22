@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * BasicEncoder.php
+ * @author    Siro Diaz Palazon <sirodiaz93@gmail.com>
+ * @copyright 2018 Siro Diaz
+ * @license   MIT
+ * @see       https://github.com/SiroDiaz/Base62
+ */
 namespace Base62\Drivers;
 
 use Base62\Base62;
@@ -7,10 +13,17 @@ use Base62\Drivers\BaseEncoder;
 use InvalidArgumentException;
 
 /**
- * 
+ * BasicEncoder is the native PHP driver.
+ * It has two public methods, inherited from the BaseEncoder abstract class.
  */
-class BasicEncoder extends BaseEncoder
+class BasicEncoder implements BaseEncoder
 {
+    /**
+     *
+     * @inheritdoc
+     *
+     * @return string $number The number decoded but as string
+     */
     public function encode($number)
     {
         if (!$this->isValidNumber($number)) {
@@ -30,6 +43,12 @@ class BasicEncoder extends BaseEncoder
         return $encodedNum;
     }
 
+    /**
+     *
+     * @inheritdoc
+     *
+     * @return string $number The number decoded but as string
+     */
     public function decode($data)
     {
         if (!is_string($data) || !preg_match("/^[a-zA-Z0-9]+$/", $data)) {

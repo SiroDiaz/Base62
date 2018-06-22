@@ -10,16 +10,22 @@
 namespace Base62\Drivers;
 
 /**
- * 
+ * BaseEncoder is the driver interface that must be implemented by
+ * all drivers.
  */
-abstract class BaseEncoder
+interface BaseEncoder
 {
     /**
-     * 
+     * Encodes a positive number passed as a string.
+     *
+     * @param string $number The number passed as a string.
      */
-    abstract public function encode($number);
+    public function encode($number);
+    
     /**
-     * 
+     * Decodes a a base 62 string and returns a positive number as string.
+     *
+     * @param string $data The string passed as a string.
      */
-    abstract public function decode($data);
+    public function decode($data);
 }

@@ -14,7 +14,7 @@ use InvalidArgumentException;
  * @copyright 2018 Siro Díaz Palazón
  * @license   http://www.opensource.org/licenses/MIT The MIT License
  */
-class BcmathEncoder extends BaseEncoder
+class BcmathEncoder implements BaseEncoder
 {
     /**
      *

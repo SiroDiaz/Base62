@@ -1,12 +1,28 @@
 <?php
-
+/**
+ * GmpEncoder.php
+ * @author    Siro Diaz Palazon <sirodiaz93@gmail.com>
+ * @copyright 2018 Siro Diaz
+ * @license   MIT
+ * @see       https://github.com/SiroDiaz/Base62
+ */
 namespace Base62\Drivers;
 
 use Base62\Drivers\BaseEncoder;
 use InvalidArgumentException;
 
-class GmpEncoder extends BaseEncoder
+/**
+ * This class is the GMP driver for encode and decode integers or
+ * base 62 strings.
+ */
+class GmpEncoder implements BaseEncoder
 {
+    /**
+     *
+     * @inheritdoc
+     *
+     * @return string $number The number decoded but as string
+     */
     public function encode($number)
     {
         if (!preg_match("/^(\d)+$/", (string) $number)) {
