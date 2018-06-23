@@ -14,7 +14,21 @@ If you want to use Base62 library with Laravel you must have Laravel 5.1 because
 
 ## Composer
 
-	$ composer require "base62/base62":"3.0.0"
+	$ composer require "base62/base62":"3.0.2"
+
+## Laravel 5
+
+You just need to follow the composer command listed before and then you have to publish the base62.php config file into
+the config path of Laravel with the following command:
+
+	$ php artisan vendor:publish --tag=base62/base62
+
+Then you can change in `config/base62.php` the default driver that is 'basic' (the PHP encoder implementation) for another supported
+by your host. It is recomended to use GMP extension because it is the most fast solution.
+Allowed encoders and decoders drivers are:
+- basic
+- gmp
+- bcmath
 
 ## Quick Start and Examples
 
@@ -37,7 +51,7 @@ require 'vendor/autoload.php';
 
 use Base62\Base62;
 
-$base62 = new Base62('basic');		// 'basic' means default PHP encoder and decoder
+$base62 = new Base62();		// by default use 'basic' driver. It is the default PHP encoder and decoder
 $encodedValue = $base62->encode(200000);	// 'Q1O'
 $decodedValue = $base62->decode($encodedValue); // 200000
 ```
