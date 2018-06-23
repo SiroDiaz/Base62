@@ -48,6 +48,7 @@ class Base62ServiceProvider extends ServiceProvider
      */
     private function registerPublishableResources()
     {
+        /*
         $configPath = dirname(__DIR__).'/config';
         $publishable = [
             'config' => [
@@ -58,6 +59,11 @@ class Base62ServiceProvider extends ServiceProvider
         foreach ($publishable as $group => $paths) {
             $this->publishes($paths, $group);
         }
+        */
+
+        $this->publishes([
+            __DIR__.'/../config/base62.php' => config_path('base62.php')
+        ], 'base62/base62');
     }
 
     /**
