@@ -1,5 +1,4 @@
 <?php
-<?php
 /**
  * Base62.php
  * @author    Siro Diaz Palazon <sirodiaz93@gmail.com>
