@@ -1,8 +1,9 @@
 {
 	"name": "base62/base62",
-	"description": "base62 encoder and decoder also for big numbers",
+	"description": "base62 encoder and decoder also for big numbers with Laravel integration",
 	"keywords": [
 		"base62",
+		"Laravel",
 		"encoder",
 		"decoder",
 		"url",

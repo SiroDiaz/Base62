@@ -1,6 +1,7 @@
 # Base62
 
 [![Build Status](https://travis-ci.org/SiroDiaz/Base62.svg?branch=develop)](https://travis-ci.org/SiroDiaz/Base62)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3XKLA6VTYVSKW&source=url)
 
 Base62 encoder and decorder also for big numbers. Useful to short database numeric ids in URLs.
 
