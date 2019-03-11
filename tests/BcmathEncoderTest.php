@@ -13,6 +13,7 @@ class BcmathEncoderTest extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
         $this->base62 = new Base62('bcmath');
     }
 

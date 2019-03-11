@@ -12,6 +12,7 @@ class Base62Test extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
         $this->base62 = new Base62('basic');
     }
 
