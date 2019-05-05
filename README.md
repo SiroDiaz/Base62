@@ -11,8 +11,6 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 * Composer
 * GMP (preferred) or BCMath extensions enabled.
 
-If you want to use Base62 library with Laravel you must have Laravel 5.1 because the minimum supported PHP version is 5.6.x.
-
 ## Composer
 
 	$ composer require "base62/base62":"3.2.0"

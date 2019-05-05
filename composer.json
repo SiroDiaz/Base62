@@ -50,5 +50,8 @@
 	"support": {
 		"issues": "https://github.com/SiroDiaz/Base62/issues",
 		"source": "https://github.com/SiroDiaz/Base62"
+	},
+	"scripts": {
+		"test": "phpunit"
 	}
 }

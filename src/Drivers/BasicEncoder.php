@@ -76,28 +76,27 @@ class BasicEncoder implements BaseEncoder
     private function isValidNumber($number)
     {
         $number = (string) $number;
-        return ctype_digit($number) && !$this->isGreaterThan($number, PHP_INT_MAX);
+
+        return ctype_digit($number) && !$this->isBigInteger($number);
     }
 
     /**
-     * Compare two integers and if $num1 is greater than $num2
-     * returns true. It checks if GMP or Bcmath extensions are enabled,
-     * else it would use default PHP comparator operator.
+     * Determines if is a big integer compared
      *
-     * @param string $num1
-     * @param string $num2
-     * @return bool  True if $num1 is greater than $num2.
+     * @param string $number
+     * @return bool  True if $number is greater than PHP_INT_MAX (maximum integer).
      */
-    private function isGreaterThan($num1, $num2)
+    private function isBigInteger($number)
     {
         if (function_exists('gmp_init')) {
-            $gmpInt1 = gmp_init($num1);
-            $gmpInt2 = gmp_init($num2);
-            return gmp_cmp($gmpInt1, $gmpInt2) === 1;
+            $gmpInt1 = gmp_init($number);
+            $gmpInt2 = gmp_init((string) PHP_INT_MAX);
+
+            return gmp_cmp($gmpInt1, $gmpInt2) >= 1;
         } else if (function_exists('bccomp')) {
-            return bccomp($num1, $num2) === 1;
-        } else {
-            return (int) $num1 > (int) $num2;
+            return bccomp($number, (string) PHP_INT_MAX) === 1;
         }
+
+        return true;
     }
 }
