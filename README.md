@@ -13,7 +13,7 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 
 ## Composer
 
-	$ composer require "base62/base62":"3.2.0"
+	$ composer require base62/base62
 
 ## Laravel 5
 
