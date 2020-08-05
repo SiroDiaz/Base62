@@ -10,7 +10,7 @@ class Base62Test extends TestCase
 {
     private $base62;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->base62 = new Base62('basic');
@@ -70,7 +70,7 @@ class Base62Test extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->assertNotEquals($expectedString, $this->base62->encode($decodedString));
     }
-    
+
     /**
      *
      * @dataProvider decodeDataProvider

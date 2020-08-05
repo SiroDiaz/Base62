@@ -3,7 +3,6 @@
 namespace Base62\Tests;
 
 use Base62\Base62;
-use Base62\Drivers\BcmathEncoder;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
@@ -11,7 +10,7 @@ class BcmathEncoderTest extends TestCase
 {
     private $base62;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->base62 = new Base62('bcmath');
@@ -68,7 +67,7 @@ class BcmathEncoderTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->base62->encode('12asd');
     }
-    
+
     /**
      *
      * @dataProvider encodeBigIntegerDataProvider
@@ -76,7 +75,7 @@ class BcmathEncoderTest extends TestCase
     public function testEncodeBigInteger($expectedString, $number) {
         $this->assertEquals($expectedString, $this->base62->encode($number));
     }
-    
+
     /**
      *
      * @dataProvider encodeBigIntegerDataProvider
