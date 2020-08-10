@@ -7,7 +7,7 @@ Base62 encoder and decorder also for big numbers. Useful to short database numer
 
 ## requirements
 
-* requires PHP >= 7.0.0 or higher
+* requires PHP >= 7.1.0 or higher
 * Composer
 * GMP (preferred) or BCMath extensions enabled.
 

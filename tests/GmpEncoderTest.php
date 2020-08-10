@@ -3,7 +3,6 @@
 namespace Base62\Tests;
 
 use Base62\Base62;
-use Base62\Drivers\GmpEncoder;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 
@@ -11,7 +10,7 @@ class GmpEncoderTest extends TestCase
 {
     private $base62;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->base62 = new Base62('gmp');
@@ -67,7 +66,7 @@ class GmpEncoderTest extends TestCase
     public function testEncodeBigInteger($expectedString, $number) {
         $this->assertEquals($expectedString, $this->base62->encode($number));
     }
-    
+
     public function testDecode()
     {
         $this->assertEquals('999', $this->base62->decode('G7'));
